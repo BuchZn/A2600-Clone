@@ -65,86 +65,74 @@ void setup() {
 int lastState[11] = {0,0,0,0,0,0,0,0,0,0,0};
 
 //Pin definition
-int Pins[11] = {DOWN,UP,RIGHT,LEFT,BUTTONO,BUTTONR,SW1,SW2,SW3,SW4,SW5};
+int Pins[11] = {UP,DOWN,RIGHT,LEFT,BUTTONO,BUTTONR,SW1,SW2,SW3,SW4,SW5};
 
 void loop() {
 
   // Read Button values
   for (int index = 0; index < 11; index++) {
-    int currentState = digitalRead(Pins[index]);
+    int currentState = !digitalRead(Pins[index]);
     if (currentState != lastState[index]) {
       switch (index) {
         case 0: // UP
           if (currentState == 1) {
             Joystick.setYAxis(-1);
-            //Serial.println("UP");
           } else {
             Joystick.setYAxis(0);
           }
           break;
         case 1: // DOWN
           if (currentState == 1) {
-            Joystick.setXAxis(1);
-            //Serial.println("DOWN");
+            Joystick.setYAxis(1);
           } else {
-            Joystick.setXAxis(0);
+            Joystick.setYAxis(0);
           }
           break;
         case 2: // RIGHT
           if (currentState == 1) {
-            Joystick.setYAxis(1);
-            //Serial.println("RIGHT");
+            Joystick.setXAxis(1);
           } else {
-            Joystick.setYAxis(0);
+            Joystick.setXAxis(0);
           }
           break;
         case 3: // LEFT
           if (currentState == 1) {
             Joystick.setXAxis(-1);
-            //Serial.println("LEFT");
           } else {
             Joystick.setXAxis(0);
           }
           break;
         case 4: // FIRE
-          Joystick.setButton(BUTTONO, currentState);
-          //Serial.println("Fire Button");
+          Joystick.setButton(0, currentState);
           break;
         case 5: // Back Button
-          Joystick.setButton(BUTTONR, currentState);
-          //Serial.println("Back Button");
+          Joystick.setButton(1, currentState);
           break;
         case 6: // Switch 1
-          Joystick.setButton(SW1, 1);
-          delay(1);
-          Joystick.setButton(SW1, 0);
-          //Serial.println("Switch 1");
+          Joystick.pressButton(2);
+          delay(25);
+          Joystick.releaseButton(2);
           break;
         case 7: // Switch 2
-          Joystick.setButton(SW2, 1);
-          delay(1);
-          Joystick.setButton(SW2, 0);
-          //Serial.println("Switch 2");
+          Joystick.pressButton(3);
+          delay(25);
+          Joystick.releaseButton(3);
           break;
         case 8: // Switch 3
-          Joystick.setButton(SW3, 1);
-          delay(1);
-          Joystick.setButton(SW3, 0);
-          //Serial.println("Switch 3");
+          Joystick.pressButton(4);
+          delay(25);
+          Joystick.releaseButton(4);
           break;
         case 9: // Switch 4
-          Joystick.setButton(SW4, 1);
-          delay(1);
-          Joystick.setButton(SW4, 0);
-          //Serial.println("Switch 4");
+          Joystick.pressButton(5);
+          delay(25);
+          Joystick.releaseButton(5);
           break;
         case 10: //Switch 5
-          Joystick.setButton(SW5, 1);
-          delay(1);
-          Joystick.setButton(SW5, 0);
-          //Serial.println("Switch 5");
+          Joystick.pressButton(6);
+          delay(25);
+          Joystick.releaseButton(6);
           break;
-  
       }
       lastState[index] = currentState;
     }
