@@ -21,7 +21,7 @@
 #include <Joystick.h>
 
 Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID,JOYSTICK_TYPE_GAMEPAD,
-  7, 0,                  // Button Count, Hat Switch Count
+  10, 0,                  // Button Count, Hat Switch Count
   true, true, false,     // X and Y, but no Z Axis
   false, false, false,   // No Rx, Ry, or Rz
   false, false,          // No rudder or throttle
@@ -62,7 +62,7 @@ void setup() {
 }
 
 // Last state of the buttons
-int lastState[11] = {0,0,0,0,0,0,0,0,0,0,0};
+int lastState[14] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 //Pin definition
 int Pins[11] = {UP,DOWN,RIGHT,LEFT,BUTTONO,BUTTONR,SW1,SW2,SW3,SW4,SW5};
@@ -110,28 +110,49 @@ void loop() {
           break;
         case 6: // Switch 1
           Joystick.pressButton(2);
-          delay(25);
+          delay(50);
           Joystick.releaseButton(2);
           break;
         case 7: // Switch 2
-          Joystick.pressButton(3);
-          delay(25);
-          Joystick.releaseButton(3);
+          if(currentState == true) {
+            Joystick.pressButton(3);
+            delay(50);
+            Joystick.releaseButton(3);
+          }
+          else if (currentState == false) {
+            Joystick.pressButton(4);
+            delay(50);
+            Joystick.releaseButton(4);
+          }
           break;
         case 8: // Switch 3
-          Joystick.pressButton(4);
-          delay(25);
-          Joystick.releaseButton(4);
-          break;
-        case 9: // Switch 4
           Joystick.pressButton(5);
-          delay(25);
+          delay(50);
           Joystick.releaseButton(5);
           break;
+        case 9: // Switch 4
+          if(currentState == true) {
+            Joystick.pressButton(6);
+            delay(50);
+            Joystick.releaseButton(6);
+          }
+          else if (currentState == false) {
+            Joystick.pressButton(7);
+            delay(50);
+            Joystick.releaseButton(7);
+          }
+          break;
         case 10: //Switch 5
-          Joystick.pressButton(6);
-          delay(25);
-          Joystick.releaseButton(6);
+          if(currentState == true) {
+            Joystick.pressButton(8);
+            delay(50);
+            Joystick.releaseButton(8);
+          }
+          else if (currentState == false) {
+            Joystick.pressButton(9);
+            delay(50);
+            Joystick.releaseButton(9);
+          }
           break;
       }
       lastState[index] = currentState;
