@@ -1,4 +1,5 @@
 ###**Retro Ralle Atari Clone**
+---
 This guide will help you upload code to an Arduino Micro for a project called *Retro Ralle*, which is an Atari 2600 clone. Retro Ralle is designed to recreate the experience of the iconic Atari 2600 console, using an Arduino Micro as the base platform. This guide will walk you through the steps required to load your game code onto the Arduino Micro, so you can start playing and testing your Retro Ralle.
 ---
 
